@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 
 import icons from "@/constants/icons";
@@ -16,30 +16,26 @@ import { Card } from "@/components/Cards";
 import Filters from "@/components/Filters";
 import NoResults from "@/components/NoResults";
 
-import { getProperties } from "@/lib/appwrite";
-import { useAppwrite } from "@/lib/useAppwrite";
+import { dummyProperties } from "@/lib/data";
 
 const Explore = () => {
   const params = useLocalSearchParams<{ query?: string; filter?: string }>();
 
-  const {
-    data: properties,
-    refetch,
-    loading,
-  } = useAppwrite({
-    fn: getProperties,
-    params: {
-      filter: params.filter!,
-      query: params.query!,
-    },
-    skip: true,
-  });
+  const [loading, setLoading] = useState(false);
+  const [properties, setProperties] = useState(dummyProperties);
+
+  const refetch = () => {
+    setLoading(true);
+    // Filter dummyProperties based on params if needed
+    const filtered = dummyProperties.filter((property) =>
+      property.name.toLowerCase().includes((params.query || "").toLowerCase())
+    );
+    setProperties(filtered);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    refetch({
-      filter: params.filter!,
-      query: params.query!,
-    });
+    refetch();
   }, [params.filter, params.query]);
 
   const handleCardPress = (id: string) => router.push(`/properties/${id}`);
@@ -50,7 +46,7 @@ const Explore = () => {
         data={properties}
         numColumns={2}
         renderItem={({ item }) => (
-          <Card item={item} onPress={() => handleCardPress(item.$id)} />
+          <Card item={item as any} onPress={() => handleCardPress(item.$id)} />
         )}
         keyExtractor={(item) => item.$id}
         contentContainerClassName="pb-32"

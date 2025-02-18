@@ -43,3 +43,246 @@ export const propertiesImages = [
   "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?q=60&w=640&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "https://images.unsplash.com/photo-1720432972486-2d53db5badf0?q=60&w=640&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
+
+export const dummyProperties = [
+  {
+    $id: "1",
+    name: "Luxury Villa with Ocean View",
+    type: "Villa",
+    rating: 4.8,
+    reviews: [
+      {
+        $id: "1",
+        user: {
+          name: "John Doe",
+          avatar: reviewImages[0],
+        },
+        rating: 5,
+        comment: "Amazing property with stunning views!",
+        date: "2024-03-15",
+      },
+    ],
+    bedrooms: 4,
+    bathrooms: 3,
+    area: 2500,
+    price: 1250000,
+    image: propertiesImages[0],
+    description:
+      "Stunning luxury villa with panoramic ocean views, featuring modern architecture and premium finishes throughout. This property includes a private pool, garden, and state-of-the-art smart home technology.",
+    agent: {
+      name: "Sarah Wilson",
+      email: "sarah.wilson@realestate.com",
+      avatar: agentImages[0],
+    },
+    facilities: ["Swimming Pool", "Garden", "Parking", "Security", "Gym"],
+    gallery: [
+      { $id: "1", image: galleryImages[0] },
+      { $id: "2", image: galleryImages[1] },
+      { $id: "3", image: galleryImages[2] },
+    ],
+    address: "123 Ocean Drive, Malibu, CA 90265",
+  },
+  {
+    $id: "2",
+    name: "Modern Downtown Apartment",
+    type: "Apartment",
+    rating: 4.5,
+    reviews: [
+      {
+        $id: "2",
+        user: {
+          name: "Jane Smith",
+          avatar: reviewImages[1],
+        },
+        rating: 4,
+        comment: "Great location and modern amenities!",
+        date: "2024-03-10",
+      },
+    ],
+    bedrooms: 2,
+    bathrooms: 2,
+    area: 1200,
+    price: 750000,
+    image: propertiesImages[1],
+    description:
+      "Contemporary apartment in the heart of downtown, featuring floor-to-ceiling windows, high-end appliances, and spectacular city views. Building includes 24/7 concierge and fitness center.",
+    agent: {
+      name: "Michael Brown",
+      email: "michael.brown@realestate.com",
+      avatar: agentImages[1],
+    },
+    facilities: ["Gym", "Concierge", "Parking", "Rooftop Terrace"],
+    gallery: [
+      { $id: "4", image: galleryImages[3] },
+      { $id: "5", image: galleryImages[4] },
+      { $id: "6", image: galleryImages[5] },
+    ],
+    address: "456 Main Street, New York, NY 10001",
+  },
+  {
+    $id: "3",
+    name: "Cozy Mountain Retreat",
+    type: "Cabin",
+    rating: 4.9,
+    reviews: [
+      {
+        $id: "3",
+        user: {
+          name: "Emily Johnson",
+          avatar: reviewImages[2],
+        },
+        rating: 5,
+        comment: "Perfect getaway spot with breathtaking mountain views!",
+        date: "2024-03-08",
+      },
+    ],
+    bedrooms: 3,
+    bathrooms: 2,
+    area: 1800,
+    price: 895000,
+    image: propertiesImages[2],
+    description:
+      "Charming mountain cabin featuring rustic architecture with modern comforts. Includes a stone fireplace, wraparound deck, and floor-to-ceiling windows showcasing spectacular mountain vistas.",
+    agent: {
+      name: "David Thompson",
+      email: "david.thompson@realestate.com",
+      avatar: agentImages[2],
+    },
+    facilities: ["Fireplace", "Deck", "Hiking Trails", "Hot Tub"],
+    gallery: [
+      { $id: "7", image: galleryImages[6] },
+      { $id: "8", image: galleryImages[7] },
+      { $id: "9", image: galleryImages[8] },
+    ],
+    address: "789 Pine Ridge Road, Aspen, CO 81611",
+  },
+  {
+    $id: "4",
+    name: "Beachfront Paradise",
+    type: "House",
+    rating: 4.7,
+    reviews: [
+      {
+        $id: "4",
+        user: {
+          name: "Robert Chen",
+          avatar: reviewImages[3],
+        },
+        rating: 5,
+        comment: "Incredible beachfront location with amazing sunset views!",
+        date: "2024-03-05",
+      },
+    ],
+    bedrooms: 5,
+    bathrooms: 4,
+    area: 3200,
+    price: 2100000,
+    image: propertiesImages[3],
+    description:
+      "Luxurious beachfront property with direct beach access. Features an infinity pool, outdoor kitchen, and spacious entertainment areas perfect for hosting gatherings.",
+    agent: {
+      name: "Lisa Martinez",
+      email: "lisa.martinez@realestate.com",
+      avatar: agentImages[3],
+    },
+    facilities: [
+      "Beach Access",
+      "Infinity Pool",
+      "Outdoor Kitchen",
+      "Security System",
+      "Wine Cellar",
+    ],
+    gallery: [
+      { $id: "10", image: galleryImages[0] },
+      { $id: "11", image: galleryImages[1] },
+      { $id: "12", image: galleryImages[2] },
+    ],
+    address: "321 Coastal Highway, Miami Beach, FL 33139",
+  },
+  {
+    $id: "5",
+    name: "Urban Loft Penthouse",
+    type: "Penthouse",
+    rating: 4.6,
+    reviews: [
+      {
+        $id: "5",
+        user: {
+          name: "Sophie Anderson",
+          avatar: reviewImages[4],
+        },
+        rating: 4,
+        comment: "Stylish space with incredible city views!",
+        date: "2024-03-01",
+      },
+    ],
+    bedrooms: 3,
+    bathrooms: 2.5,
+    area: 2000,
+    price: 1750000,
+    image: propertiesImages[4],
+    description:
+      "Sophisticated penthouse loft featuring industrial-chic design, exposed brick walls, and a private rooftop terrace. Includes smart home automation and premium appliances.",
+    agent: {
+      name: "James Wilson",
+      email: "james.wilson@realestate.com",
+      avatar: agentImages[4],
+    },
+    facilities: [
+      "Rooftop Terrace",
+      "Smart Home",
+      "Wine Room",
+      "Private Elevator",
+    ],
+    gallery: [
+      { $id: "13", image: galleryImages[3] },
+      { $id: "14", image: galleryImages[4] },
+      { $id: "15", image: galleryImages[5] },
+    ],
+    address: "789 Arts District, Chicago, IL 60601",
+  },
+  {
+    $id: "6",
+    name: "Mediterranean Villa Estate",
+    type: "Villa",
+    rating: 4.9,
+    reviews: [
+      {
+        $id: "6",
+        user: {
+          name: "Alexander Wright",
+          avatar: reviewImages[0],
+        },
+        rating: 5,
+        comment: "Absolutely magnificent property with incredible gardens!",
+        date: "2024-02-28",
+      },
+    ],
+    bedrooms: 6,
+    bathrooms: 5.5,
+    area: 5500,
+    price: 3500000,
+    image: propertiesImages[5],
+    description:
+      "Elegant Mediterranean estate set on manicured grounds with a tennis court, pool house, and guest cottage. Features include a gourmet kitchen, wine cellar, and home theater.",
+    agent: {
+      name: "Victoria Palmer",
+      email: "victoria.palmer@realestate.com",
+      avatar: agentImages[0],
+    },
+    facilities: [
+      "Tennis Court",
+      "Pool House",
+      "Guest Cottage",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    gallery: [
+      { $id: "16", image: galleryImages[6] },
+      { $id: "17", image: galleryImages[7] },
+      { $id: "18", image: galleryImages[8] },
+    ],
+    address: "1234 Villa Lane, Beverly Hills, CA 90210",
+  },
+];

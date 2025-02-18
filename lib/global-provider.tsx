@@ -1,7 +1,5 @@
 import React, { createContext, useContext, ReactNode } from "react";
 
-import { getCurrentUser } from "./appwrite";
-import { useAppwrite } from "./useAppwrite";
 import { Redirect } from "expo-router";
 
 interface GlobalContextType {
@@ -25,13 +23,29 @@ interface GlobalProviderProps {
 }
 
 export const GlobalProvider = ({ children }: GlobalProviderProps) => {
-  const {
-    data: user,
-    loading,
-    refetch,
-  } = useAppwrite({
-    fn: getCurrentUser,
-  });
+  const [user, setUser] = React.useState<User | null>(null);
+  const [loading, setLoading] = React.useState(false);
+
+  const refetch = React.useCallback(() => {
+    setLoading(true);
+    try {
+      setUser({
+        $id: "1",
+        name: "John Doe",
+        email: "john@example.com",
+        avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+      });
+    } catch (error) {
+      console.error(error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   const isLogged = !!user;
 

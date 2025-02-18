@@ -6,44 +6,57 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import icons from "@/constants/icons";
+import { dummyProperties } from "@/lib/data";
 
 import Search from "@/components/Search";
 import Filters from "@/components/Filters";
 import NoResults from "@/components/NoResults";
 import { Card, FeaturedCard } from "@/components/Cards";
 
-import { useAppwrite } from "@/lib/useAppwrite";
 import { useGlobalContext } from "@/lib/global-provider";
-import { getLatestProperties, getProperties } from "@/lib/appwrite";
 
 const Home = () => {
   const { user } = useGlobalContext();
 
   const params = useLocalSearchParams<{ query?: string; filter?: string }>();
 
-  const { data: latestProperties, loading: latestPropertiesLoading } =
-    useAppwrite({
-      fn: getLatestProperties,
-    });
+  const [latestProperties, setLatestProperties] = useState(dummyProperties);
+  const [latestPropertiesLoading, setLatestPropertiesLoading] = useState(false);
 
-  const {
-    data: properties,
-    refetch,
-    loading,
-  } = useAppwrite({
-    fn: getProperties,
-    params: {
-      filter: params.filter!,
-      query: params.query!,
-      limit: 6,
-    },
-    skip: true,
-  });
+  const [loading, setLoading] = useState(false);
+  const [properties, setProperties] = useState(dummyProperties);
+
+  const refetch = (params: {
+    filter: string;
+    query: string;
+    limit: number;
+  }) => {
+    setLoading(true);
+    let filtered = dummyProperties;
+
+    if (params.query) {
+      filtered = filtered.filter((property) =>
+        property.name.toLowerCase().includes(params.query.toLowerCase())
+      );
+    }
+
+    if (params.filter && params.filter !== "All") {
+      filtered = filtered.filter(
+        (property) =>
+          property.type.toLowerCase() === params.filter.toLowerCase()
+      );
+    }
+
+    filtered = filtered.slice(0, params.limit);
+
+    setProperties(filtered);
+    setLoading(false);
+  };
 
   useEffect(() => {
     refetch({
@@ -61,7 +74,7 @@ const Home = () => {
         data={properties}
         numColumns={2}
         renderItem={({ item }) => (
-          <Card item={item} onPress={() => handleCardPress(item.$id)} />
+          <Card item={item as any} onPress={() => handleCardPress(item.$id)} />
         )}
         keyExtractor={(item) => item.$id}
         contentContainerClassName="pb-32"
@@ -118,7 +131,7 @@ const Home = () => {
                   data={latestProperties}
                   renderItem={({ item }) => (
                     <FeaturedCard
-                      item={item}
+                      item={item as any}
                       onPress={() => handleCardPress(item.$id)}
                     />
                   )}
@@ -129,8 +142,6 @@ const Home = () => {
                 />
               )}
             </View>
-
-            {/* <Button title="seed" onPress={seed} /> */}
 
             <View className="mt-5">
               <View className="flex flex-row items-center justify-between">
