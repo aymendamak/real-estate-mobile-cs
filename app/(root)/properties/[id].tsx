@@ -14,62 +14,20 @@ import icons from "@/constants/icons";
 import images from "@/constants/images";
 import Comment from "@/components/Comment";
 import { facilities } from "@/constants/data";
+import { dummyProperties } from "@/lib/data";
+import { useEffect, useState } from "react";
 
 const Property = () => {
   const { id } = useLocalSearchParams<{ id?: string }>();
 
   const windowHeight = Dimensions.get("window").height;
 
-  const property = {
-    id: "1",
-    name: "Luxury Villa with Ocean View",
-    type: "Villa",
-    rating: 4.8,
-    reviews: [
-      {
-        id: "1",
-        user: {
-          name: "John Doe",
-          avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-        },
-        rating: 5,
-        comment: "Amazing property with stunning views!",
-        date: "2024-03-15",
-      },
-    ],
-    bedrooms: 4,
-    bathrooms: 3,
-    area: 2500,
-    price: 1250000,
-    image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-    description:
-      "Stunning luxury villa with panoramic ocean views, featuring modern architecture and premium finishes throughout. This property includes a private pool, garden, and state-of-the-art smart home technology.",
-    agent: {
-      name: "Sarah Wilson",
-      email: "sarah.wilson@realestate.com",
-      avatar: "https://randomuser.me/api/portraits/women/1.jpg",
-    },
-    facilities: ["Swimming Pool", "Garden", "Parking", "Security", "Gym"],
-    gallery: [
-      {
-        $id: "1",
-        image:
-          "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-      },
-      {
-        $id: "2",
-        image:
-          "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-      },
-      {
-        $id: "3",
-        image:
-          "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop",
-      },
-    ],
-    address: "123 Ocean Drive, Malibu, CA 90265",
-  };
+  const [property, setProperty] = useState<any>(null);
+
+  useEffect(() => {
+    const property = dummyProperties.find((property) => property.$id === id);
+    setProperty(property);
+  }, [id]);
 
   return (
     <View>

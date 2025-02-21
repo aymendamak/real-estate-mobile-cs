@@ -31,9 +31,9 @@ const Search = () => {
         />
       </View>
 
-      <TouchableOpacity>
+      {/* <TouchableOpacity>
         <Image source={icons.filter} className="size-5" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
